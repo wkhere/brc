@@ -1,0 +1,4 @@
+github.com/andybalholm/brotli v1.0.6 h1:Yf9fFpf49Zrxb9NlQaluyE92/+X7UVHlhMNJN2sxfOI=
+github.com/andybalholm/brotli v1.0.6/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
+github.com/spf13/pflag v1.0.6-0.20200504143853-81378bbcd8a1 h1:zrNp7OPtn2fjeNHI9CghvwxqQvvkK0RxUo86hE86vhU=
+github.com/spf13/pflag v1.0.6-0.20200504143853-81378bbcd8a1/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
