@@ -9,17 +9,22 @@ import (
 	"github.com/andybalholm/brotli"
 )
 
-type config struct {
+type action struct {
 	compress      bool
 	compressLevel int
 
 	help func()
 }
 
-func run(conf config) error {
+var defaultAction = action{
+	compress:      true,
+	compressLevel: 6,
+}
+
+func run(a action) error {
 	switch {
-	case conf.compress:
-		w := brotli.NewWriterLevel(os.Stdout, conf.compressLevel)
+	case a.compress:
+		w := brotli.NewWriterLevel(os.Stdout, a.compressLevel)
 		_, err := io.Copy(w, os.Stdin)
 		if err != nil {
 			return fmt.Errorf("compress: %w", err)
@@ -29,7 +34,7 @@ func run(conf config) error {
 			return fmt.Errorf("compress closing: %w", err)
 		}
 
-	case !conf.compress:
+	case !a.compress:
 		r := brotli.NewReader(os.Stdin)
 		_, err := io.Copy(os.Stdout, r)
 		if err != nil {
@@ -41,16 +46,16 @@ func run(conf config) error {
 }
 
 func main() {
-	conf, err := parseArgs(os.Args[1:])
+	a, err := parseArgs(os.Args[1:])
 	if err != nil {
 		die(2, err)
 	}
-	if conf.help != nil {
-		conf.help()
+	if a.help != nil {
+		a.help()
 		os.Exit(0)
 	}
 
-	err = run(conf)
+	err = run(a)
 	if err != nil {
 		die(1, err)
 	}
