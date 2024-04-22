@@ -176,20 +176,29 @@ func (p *argp) parseIntFlag(dest *int, s, long string) bool {
 		return false
 	}
 	flag, s := s[:n], s[n:]
-	if s == "" {
-		return false
-	}
-	if !dashN {
-		if s[0] != '=' {
+
+	if dashN {
+		if s == "" {
 			return false
 		}
-		s = s[1:]
-	}
-	v, err := strconv.Atoi(s)
-	if err != nil {
-		if !dashN {
-			p.emitErrorf("flag %s: %w", flag, err)
+		v, err := strconv.Atoi(s)
+		if err != nil {
+			return false
 		}
+		*dest = v
+		return true
+	}
+
+	if s == "" {
+		p.emitErrorf("flag %s: expected value", flag)
+		return false
+	}
+	if s[0] != '=' {
+		return false
+	}
+	v, err := strconv.Atoi(s[1:])
+	if err != nil {
+		p.emitErrorf("flag %s: %w", flag, err)
 		return false
 	}
 	*dest = v
