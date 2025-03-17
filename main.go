@@ -46,7 +46,7 @@ func openOut(path string, force bool) (*os.File, error) {
 	return os.OpenFile(path, os.O_WRONLY|os.O_CREATE|wflag, 0644)
 }
 
-func run(a action) (err error) {
+func run(a action) (rerr error) {
 	in, err := openIn(a.fileIn)
 	if err != nil {
 		return err
@@ -57,7 +57,7 @@ func run(a action) (err error) {
 	if err != nil {
 		return err
 	}
-	defer safeClose(out, &err)
+	defer safeClose(out, &rerr)
 
 	switch {
 	case a.compress:
