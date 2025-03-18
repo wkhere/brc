@@ -10,6 +10,7 @@ import (
 )
 
 const fileExt = ".br"
+const discard = "∅"
 
 type action struct {
 	fileIn        string
@@ -33,7 +34,10 @@ func openIn(path string) (*os.File, error) {
 	return os.Open(path)
 }
 
-func openOut(path string, force bool) (*os.File, error) {
+func openOut(path string, force bool) (io.Writer, error) {
+	if path == discard {
+		return io.Discard, nil
+	}
 	if path == "-" {
 		return os.Stdout, nil
 	}
@@ -57,7 +61,7 @@ func run(a action) (rerr error) {
 	if err != nil {
 		return err
 	}
-	defer safeClose(out, &rerr)
+	defer safeCloseWriter(out, &rerr)
 
 	switch {
 	case a.compress:
@@ -98,10 +102,16 @@ func main() {
 	}
 }
 
-func safeClose(f *os.File, errp *error) {
-	cerr := f.Close()
+func safeClose(c io.Closer, errp *error) {
+	cerr := c.Close()
 	if cerr != nil && *errp == nil {
 		*errp = cerr
+	}
+}
+
+func safeCloseWriter(w io.Writer, errp *error) {
+	if c, ok := w.(io.Closer); ok {
+		safeClose(c, errp)
 	}
 }
 
