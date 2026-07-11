@@ -195,7 +195,9 @@ func toplevelHelp() {
 	fmt.Printf(usage, defaultAction.compressLevel)
 }
 
-const usage = `Usage: brc [FLAGS] [FILE1] [FILE2]
+const usage = `Compress/decompress files using the brotli format.
+
+Usage: brc [FLAGS] [FILE1] [FILE2]
     -z, --compress     compress (default true)
     -d, --decompress   decompress
     -N, --level=N      compress level, 0..11 (default %d)
