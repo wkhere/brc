@@ -72,8 +72,8 @@ func TestParseArgs(t *testing.T) {
 			{"-d foo", none, "unable to guess 2nd file name"},
 			{"-t", and(file1("-"), file2(discard)), ""},
 			{"-t -", and(file1("-"), file2(discard)), ""},
-			{"-t foo.zl", and(file1("foo.zl"), file2(discard)), ""},
-			{"-t foo.zl foo", none, "at most one file name"},
+			{"-t foo.br", and(file1("foo.br"), file2(discard)), ""},
+			{"-t foo.br foo", none, "at most one file name"},
 			{"-t -z", none, "conflicting flags"},
 			{"-t -d", none, "conflicting flags"},
 		}
