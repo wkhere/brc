@@ -16,6 +16,7 @@ func parseArgs(args []string) (a action, _ error) {
 	var flag struct {
 		z, d, t    bool
 		zset, dset bool
+		lvl        int
 	}
 	var rest []string
 
@@ -29,7 +30,12 @@ func parseArgs(args []string) (a action, _ error) {
 			flag.dset = pc.ParseBool(&flag.d, p)
 
 		case p.MatchDashIntFlag() || p.MatchLongFlagExpr("--level"):
-			pc.ParseInt(&a.compressLevel, p)
+			pc.ParseInt(&flag.lvl, p)
+			if flag.lvl < 0 || flag.lvl > 11 {
+				p.Errorf("expected level 0..11")
+				continue
+			}
+			a.compressLevel = flag.lvl
 
 		case p.MatchBoolFlag("-f", "--force"):
 			pc.ParseBool(&a.force, p)
@@ -127,5 +133,4 @@ When compressing and only FILE1 is given, FILE2 is FILE1.br .
 When decompressing and only FILE1 is given, FILE2 tries to strip .br from it.
 FILE1 or FILE2 (or both) can be "-", meaning stdin and stdout.
 NOTE: FILE1 is not deleted afterwards.
-Also note that the wrong compress level does not result in an error.
 `

@@ -1,2 +1,2 @@
 - warning (error?) on compressing already compressed input
-- check the compression level valid range, brotli.NewWriterLevel doesn't
++ check the compression level valid range, brotli.NewWriterLevel doesn't
