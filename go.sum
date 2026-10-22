@@ -1,2 +1,4 @@
+codeberg.org/wkhere/argp v0.15.0 h1:oXK2YJ4bqLN1/X/bU06KeC2rxe4Mla+D2utoJ0Nw2wI=
+codeberg.org/wkhere/argp v0.15.0/go.mod h1:qgaRTcznZVSQrAgssRm17hTQLYlGNrzswqTuoXhoEEw=
 github.com/andybalholm/brotli v1.0.6 h1:Yf9fFpf49Zrxb9NlQaluyE92/+X7UVHlhMNJN2sxfOI=
 github.com/andybalholm/brotli v1.0.6/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
