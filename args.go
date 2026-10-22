@@ -28,12 +28,7 @@ func parseArgs(args []string) (a action, _ error) {
 		case p.MatchBoolFlag("-d", "--decompress"):
 			flag.dset = pc.ParseBool(&flag.d, p)
 
-		case len(arg) > 1 && arg[0] == '-' && digit(arg[1]):
-			p.Flag = arg
-			p.Val = arg[1:]
-			fallthrough
-
-		case p.MatchLongFlagExpr("--level"):
+		case p.MatchDashIntFlag() || p.MatchLongFlagExpr("--level"):
 			pc.ParseInt(&a.compressLevel, p)
 
 		case p.MatchBoolFlag("-f", "--force"):
@@ -112,8 +107,6 @@ func parseArgs(args []string) (a action, _ error) {
 
 	return a, nil
 }
-
-func digit(r byte) bool { return r >= '0' && r <= '9' }
 
 // help
 
