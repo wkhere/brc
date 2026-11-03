@@ -1,6 +1,6 @@
 module github.com/wkhere/brc
 
-go 1.21
+go 1.21.0
 
 require (
 	codeberg.org/wkhere/argp v0.16.2
