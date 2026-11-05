@@ -1,5 +1,5 @@
-codeberg.org/wkhere/argp v0.16.2 h1:tIwT4vSh4A2NigXKm3FybSsMT9E0HAdkNgd3/grWHyw=
-codeberg.org/wkhere/argp v0.16.2/go.mod h1:qgaRTcznZVSQrAgssRm17hTQLYlGNrzswqTuoXhoEEw=
+codeberg.org/wkhere/argp v0.16.4 h1:ZVtA9z5NFn6nJx+hSE2+5vgXZj62FVLwqnUR4kTQa0c=
+codeberg.org/wkhere/argp v0.16.4/go.mod h1:qgaRTcznZVSQrAgssRm17hTQLYlGNrzswqTuoXhoEEw=
 github.com/andybalholm/brotli v1.0.6 h1:Yf9fFpf49Zrxb9NlQaluyE92/+X7UVHlhMNJN2sxfOI=
 github.com/andybalholm/brotli v1.0.6/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
 github.com/frankban/quicktest v1.14.6 h1:7Xjx+VpznH+oBnejlPUj8oUpdxnVs4f8XU8WnHkI4W8=
